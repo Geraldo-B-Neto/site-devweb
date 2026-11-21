@@ -1,0 +1,19 @@
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --ink: #111318;
+  --slate: #4b5160;
+  --mute: #8a90a0;
+  --line: #e4e6eb;
+  --surface: #f7f7f9;
+  --cloud: #f7f7f9;
+  --red: #e82824;
+  --pink: #f14895;
+  --grad: linear-gradient(110deg, #f14895, #e82824);
+  --hdr: rgba(255, 255, 255, 0.92);
+  --head: 'Space Grotesk', system-ui, sans-serif;
+  --body: 'Inter', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --serif: 'Newsreader', Georgia, serif;
+  --ease: cubic-bezier(0.625, 0.05, 0, 1);
+}

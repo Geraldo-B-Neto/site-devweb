@@ -1,0 +1,83 @@
+.tsplit {
+  padding: 96px 0;
+  background: var(--bg);
+  color: var(--slate);
+  position: relative;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+:root[data-theme="dark"] .tsplit {
+  background: #050507;
+  color: #C9CEDB;
+}
+
+.tsIn {
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.tsP {
+  margin: 0 1rem;
+  font: 600 clamp(30px, 5.4vw, 84px) / 1.1 var(--head);
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+:root[data-theme="dark"] .tsP {
+  color: #F3F4F7;
+}
+
+.w {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.cw {
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  padding: 0.12em 0;
+  margin: -0.12em 0;
+}
+
+.ci {
+  display: inline-block;
+  will-change: transform, opacity;
+  transition: transform 0.05s linear, opacity 0.05s linear;
+}
+
+.tsplit.on {
+  height: 260vh;
+  padding: 0;
+}
+
+.tsplit.on .tsIn {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+@supports (height: 100svh) {
+  .tsplit.on {
+    height: 260svh;
+  }
+
+  .tsplit.on .tsIn {
+    height: 100svh;
+  }
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.tsVis {
+  display: inline;
+}
