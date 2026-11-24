@@ -5,16 +5,16 @@
  */
 export const SITE = {
   /** Domínio canônico, sem barra no final. */
-  url: 'https://getdevweb.com.br',
+  url: 'https://devwebresolv.com.br',
   name: 'DevWeb',
   legalName: 'DevWeb',
   title: 'Criação de Sites Profissionais e Landing Pages | DevWeb',
   description:
     'Criação de sites, landing pages e sistemas web em Patrocínio-MG e todo o Brasil. Sites rápidos, responsivos e prontos para o Google. A partir de R$ 690.',
   slogan: 'Código sólido. Presença que vende.',
-  telephone: '+55-34-99841-8664',
-  whatsapp: 'https://wa.me/5534998418664',
-  email: 'contato@devweb.com.br',
+  telephone: '+55-34-99731-5975',
+  whatsapp: 'https://wa.me/5534997315975',
+  email: 'devwebofc@gmail.com',
   address: {
     addressLocality: 'Patrocínio',
     addressRegion: 'MG',
@@ -24,5 +24,5 @@ export const SITE = {
   priceRange: 'A partir de R$ 690',
   founders: ['Geraldo Bruno', 'Douglas Miquéias'],
   /** Perfis oficiais (Instagram, LinkedIn, GitHub...). Preencha com as URLs reais. */
-  sameAs: [] as string[],
+  sameAs: ['https://www.instagram.com/devwebofc/', 'https://github.com/devwebofc'] as string[],
 } as const;

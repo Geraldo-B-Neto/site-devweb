@@ -203,7 +203,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBriefing }) => {
           <li><a href="#duvidas" onClick={closeMenu}>Dúvidas</a></li>
           <li>
             <a
-              href="https://wa.me/5534998418664"
+              href="https://wa.me/5534997315975"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.whatsappLink}

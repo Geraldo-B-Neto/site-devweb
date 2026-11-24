@@ -343,7 +343,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenBriefing }
           <a className={styles.bt} href="#briefing" onClick={handleBriefingClick}>
             Montar meu projeto no briefing
           </a>
-          <a className={`${styles.bt} ${styles.g}`} href="mailto:contato@devweb.com.br">
+          <a className={`${styles.bt} ${styles.g}`} href="mailto:devwebofc@gmail.com">
             Falar por e-mail
           </a>
         </div>

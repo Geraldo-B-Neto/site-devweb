@@ -39,11 +39,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBriefing }) => {
           </a>
 
           <div className={styles.linksGroup}>
-            <a href="mailto:contato@devweb.com.br" className={styles.linkItem}>
-              contato@devweb.com.br
+            <a href="mailto:devwebofc@gmail.com" className={styles.linkItem}>
+              devwebofc@gmail.com
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/devwebofc/"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.linkItem}
@@ -51,15 +51,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBriefing }) => {
               Instagram
             </a>
             <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.linkItem}
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://wa.me/5534998418664"
+              href="https://wa.me/5534997315975"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.linkItem}
@@ -67,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBriefing }) => {
               WhatsApp
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/devwebofc"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.linkItem}

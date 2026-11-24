@@ -26,8 +26,7 @@ Checklist do padrão de entrega aplicado neste site. Dados da empresa ficam em
 - [x] `WebSite`, `WebPage` e `FAQPage` (gerado a partir de `src/pages/home/data/faq.ts`)
 
 ## Pendente (fora do código)
-- [ ] Confirmar o domínio em `src/seo/siteConfig.ts` (`https://getdevweb.com.br`)
-- [ ] Preencher `sameAs` com Instagram/LinkedIn/GitHub reais e trocar os links genéricos do rodapé
+- [ ] Adicionar o LinkedIn (rodapé e `sameAs`) quando houver perfil
 - [ ] Google Search Console: verificar domínio e enviar `/sitemap.xml`
 - [ ] Google Business Profile com nome, telefone e cidade idênticos ao `siteConfig.ts`
 - [ ] Google Analytics 4 e eventos de conversão (cliques no WhatsApp / briefing)

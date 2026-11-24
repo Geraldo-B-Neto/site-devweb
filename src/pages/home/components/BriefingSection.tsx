@@ -291,7 +291,7 @@ export const BriefingSection: React.FC<BriefingSectionProps> = ({ onClose, prefi
       `*Recursos Desejados:* ${features.join(', ') || 'A definir'}`,
     ].join('\n');
 
-    const url = `https://wa.me/5534998418664?text=${encodeURIComponent(summary)}`;
+    const url = `https://wa.me/5534997315975?text=${encodeURIComponent(summary)}`;
     window.open(url, '_blank');
   };
 
