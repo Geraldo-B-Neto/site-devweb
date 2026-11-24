@@ -15,7 +15,7 @@ Checklist do padrão de entrega aplicado neste site. Dados da empresa ficam em
 
 **Técnico**
 - [x] Pré-renderização: o HTML completo da página é gerado no build (`scripts/prerender.mjs`)
-- [x] Canonical, `robots`, Open Graph, Twitter Card, `theme-color`, manifesto e favicons
+- [x] Canonical, `robots`, Open Graph, Twitter Card, `theme-color` e favicons
 - [x] `sitemap.xml` e `robots.txt` gerados no build com o domínio de `siteConfig.ts`
 - [x] Página 404 personalizada (`public/404.html`, `noindex`)
 - [x] Fontes reduzidas às 3 famílias realmente usadas (antes eram 10)
