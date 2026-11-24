@@ -59,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBriefing }) => {
               LinkedIn
             </a>
             <a
-              href="https://wa.me/5511999999999"
+              href="https://wa.me/5534998418664"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.linkItem}

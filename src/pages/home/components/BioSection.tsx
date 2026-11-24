@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './BioSection.module.css';
-import geraldoMiguelImg from '../../../assets/images/geraldo-miguel.webp';
+import geraldoMiguelImg from '../../../assets/images/equipe-devweb-geraldo-bruno-douglas-miqueias.webp';
 
 export const BioSection: React.FC = () => {
   const duoRef = useRef<HTMLDivElement>(null);

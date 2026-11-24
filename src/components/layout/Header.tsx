@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Header.module.css';
-import logoImg from '../../assets/images/logo.png';
-import logoWhiteImg from '../../assets/images/logo-white.png';
+import logoImg from '../../assets/images/devweb-logo.webp';
+import logoWhiteImg from '../../assets/images/devweb-logo-white.webp';
 
 interface HeaderProps {
   onOpenBriefing?: () => void;
