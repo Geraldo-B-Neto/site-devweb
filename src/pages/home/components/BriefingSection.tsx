@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import styles from './BriefingSection.module.css';
 import { SimulatorPrefill } from './SimulatorSection';
-
-import cromaticaImg from '../../../assets/images/site-cromatica-filmes-desktop.webp';
-import cervoImg from '../../../assets/images/site-cervo-films-desktop.webp';
-import institucionalImg from '../../../assets/images/exemplo-site-institucional.webp';
+import { SITE } from '../../../seo/siteConfig';
 
 interface BriefingSectionProps {
   onClose: () => void;
@@ -16,15 +13,6 @@ interface OptionItem {
   icon: string;
   label: string;
   desc: string;
-}
-
-interface RecommendedSite {
-  name: string;
-  category: string;
-  image: string;
-  badge: string;
-  description: string;
-  features: string[];
 }
 
 export const BriefingSection: React.FC<BriefingSectionProps> = ({ onClose, prefillData }) => {
@@ -220,79 +208,36 @@ export const BriefingSection: React.FC<BriefingSectionProps> = ({ onClose, prefi
     }
   };
 
-  // Recommendation Generator based on answers
-  const generateJustification = () => {
-    const selectedSeg = segment || 'o seu segmento';
-    const selectedGoal = goal || 'gerar mais contatos e credibilidade';
-
-    return (
-      <>
-        Analisamos as suas escolhas para <strong>{selectedSeg}</strong> com foco em{' '}
-        <strong>{selectedGoal.toLowerCase()}</strong>. Identificamos que o seu negócio
-        precisa de uma solução com <strong>código sob medida</strong>, carregamento instantâneo
-        no celular e uma arquitetura que elimina atritos até o fechamento. Em nossos projetos
-        reais, essa exata combinação gerou resultados mensuráveis logo nas primeiras semanas.
-      </>
-    );
-  };
-
-  const recommendedSites: RecommendedSite[] = [
-    {
-      name: 'Cromática Filmes & Educação',
-      category: 'Página de Apresentação & Conversão',
-      image: cromaticaImg,
-      badge: 'Case de Conversão',
-      description:
-        'A maior escola de música de Patrocínio precisava de presença autoral e fluxo claro para captação de alunos no WhatsApp.',
-      features: [
-        'Carregamento em 0.8s no celular',
-        'Caminho direto para matrícula e contato',
-        'Identidade visual autoral e impactante',
-      ],
-    },
-    {
-      name: 'Cervo Café & Bistrô',
-      category: 'Identidade & Experiência Mobile',
-      image: cervoImg,
-      badge: 'Case Gastronomia',
-      description:
-        'Experiência pensada 100% para o smartphone, com cardápio dinâmico, localização integrada e fotografia que valoriza o produto.',
-      features: [
-        'Navegação fluida sem travamentos',
-        'Cardápio interativo e atualizável',
-        'Aumento direto no fluxo de clientes locais',
-      ],
-    },
-    {
-      name: 'Plataforma Web Institucional',
-      category: 'Estrutura Completa & SEO',
-      image: institucionalImg,
-      badge: 'Case Institucional',
-      description:
-        'Estrutura com múltiplas páginas para empresas que precisam de autoridade em licitações, parcerias e buscas no Google.',
-      features: [
-        'Aparece nas primeiras posições de busca',
-        'Certificação de segurança e código limpo',
-        'Painel intuitivo de atualização',
-      ],
-    },
-  ];
-
-  const handleSendWhatsApp = () => {
-    const summary = [
-      `*Briefing DevWeb - Solicitação de Projeto*`,
-      `*Nome:* ${contact.name || 'Cliente'}`,
-      `*WhatsApp:* ${contact.whatsapp || 'Não informado'}`,
-      `*E-mail:* ${contact.email || 'Não informado'}`,
-      `*Segmento:* ${segment || 'Geral'}`,
-      `*Objetivo Principal:* ${goal || 'Mais clientes'}`,
-      `*Momento do Negócio:* ${stage || 'Em desenvolvimento'}`,
-      `*Estilo Visual:* ${stylePreference || 'Personalizado'}`,
-      `*Recursos Desejados:* ${features.join(', ') || 'A definir'}`,
+  // Monta a mensagem com todas as respostas do briefing
+  const buildWhatsAppUrl = () => {
+    const message = [
+      'Olá, DevWeb! Acabei de preencher o briefing no site. Seguem minhas respostas:',
+      '',
+      '*BRIEFING DE PROJETO*',
+      '',
+      `*Nome/empresa:* ${contact.name.trim()}`,
+      `*WhatsApp:* ${contact.whatsapp.trim()}`,
+      `*E-mail:* ${contact.email.trim() || 'Não informado'}`,
+      '',
+      `*Segmento:* ${segment || 'Não informado'}`,
+      `*Objetivo principal:* ${goal || 'Não informado'}`,
+      `*Momento do negócio:* ${stage || 'Não informado'}`,
+      `*Estilo visual:* ${stylePreference || 'Não informado'}`,
+      '*Recursos desejados:*',
+      ...(features.length ? features.map((f) => `• ${f}`) : ['• A definir']),
     ].join('\n');
 
-    const url = `https://wa.me/5534997315975?text=${encodeURIComponent(summary)}`;
-    window.open(url, '_blank');
+    return `${SITE.whatsapp}?text=${encodeURIComponent(message)}`;
+  };
+
+  // Envia as respostas para o WhatsApp da DevWeb e mostra a confirmação
+  const handleSendWhatsApp = () => {
+    const url = buildWhatsAppUrl();
+    const win = window.open(url, '_blank');
+    if (win) win.opener = null;
+    else window.location.href = url; // navegador bloqueou a nova aba
+    setCurrentStep(TOTAL_STEPS);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -609,9 +554,10 @@ export const BriefingSection: React.FC<BriefingSectionProps> = ({ onClose, prefi
           {currentStep === 5 && (
             <div className={styles.questionView}>
               <span className={styles.questionEyebrow}>Quase pronto</span>
-              <h2 className={styles.questionTitle}>Onde podemos enviar sua recomendação de projeto?</h2>
+              <h2 className={styles.questionTitle}>Como podemos falar com você?</h2>
               <p className={styles.questionSubtitle}>
-                Preencha seus dados para visualizar a análise personalizada e os 3 sites recomendados.
+                Ao enviar, suas respostas seguem direto para o WhatsApp da DevWeb e a gente
+                retorna com a proposta do seu projeto.
               </p>
 
               <div className={styles.contactForm}>
@@ -658,99 +604,44 @@ export const BriefingSection: React.FC<BriefingSectionProps> = ({ onClose, prefi
                 <button
                   type="button"
                   className={styles.btnNext}
-                  onClick={handleNext}
-                  disabled={!contact.name || !contact.whatsapp}
+                  onClick={handleSendWhatsApp}
+                  disabled={!contact.name.trim() || !contact.whatsapp.trim()}
                 >
-                  Ver recomendação completa →
+                  Enviar pelo WhatsApp →
                 </button>
               </div>
             </div>
           )}
 
-          {/* STEP 6: FINAL RECOMMENDATION ENGINE SCREEN */}
+          {/* STEP 6: Confirmação de envio */}
           {currentStep === 6 && (
             <div className={styles.resultsView}>
               <header className={styles.resultsHeader}>
-                <span className={styles.resultsEyebrow}>Diagnóstico Concluído</span>
-                <h1 className={styles.resultsTitle}>
-                  A solução ideal para a presença digital da sua empresa
-                </h1>
+                <span className={styles.resultsEyebrow}>Briefing enviado</span>
+                <h1 className={styles.resultsTitle}>Obrigado, {contact.name.trim()}!</h1>
               </header>
 
-              {/* Justification Box */}
-              <div className={styles.justificationCard}>
-                <h3 className={styles.justificationTitle}>
-                  // Por que essa recomendação resolve o seu problema
-                </h3>
-                <p className={styles.justificationText}>{generateJustification()}</p>
-              </div>
-
-              {/* 3 Recommended Sites Matching User Answers */}
-              <h3
-                style={{
-                  font: '600 20px var(--head, Space Grotesk, sans-serif)',
-                  margin: '0 0 20px 0',
-                  color: '#111812',
-                  letterSpacing: '-0.02em',
-                }}
-              >
-                3 Projetos da DevWeb com arquiteturas semelhantes à sua necessidade:
-              </h3>
-
-              <div className={styles.recommendedGrid}>
-                {recommendedSites.map((site, idx) => (
-                  <article key={idx} className={styles.siteCard}>
-                    <div className={styles.siteImageWrap}>
-                      <img
-                        src={site.image}
-                        alt={`Exemplo de projeto: ${site.name}`}
-                        className={styles.siteImage}
-                        width="1100"
-                        height="516"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <span className={styles.siteBadge}>{site.badge}</span>
-                    </div>
-                    <div className={styles.siteBody}>
-                      <h4 className={styles.siteName}>{site.name}</h4>
-                      <span className={styles.siteCategory}>{site.category}</span>
-                      <p className={styles.siteDescription}>{site.description}</p>
-                      <ul className={styles.siteFeatures}>
-                        {site.features.map((feat, fIdx) => (
-                          <li key={fIdx}>{feat}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </article>
-                ))}
-              </div>
-
-              {/* Final Call to Action Block */}
               <div className={styles.ctaBox}>
                 <div className={styles.ctaText}>
-                  <h3>Vamos tirar o seu projeto do papel com essa estrutura?</h3>
+                  <h3>Seu briefing está pronto no WhatsApp da DevWeb</h3>
                   <p>
-                    Nosso time já recebeu o resumo das suas escolhas. Clique abaixo para iniciar a conversa
-                    direto com nossos analistas no WhatsApp ou agendar uma reunião de 30 minutos.
+                    Abrimos o WhatsApp com todas as suas respostas. Falta só tocar em enviar na
+                    conversa. Se o WhatsApp não abriu, use o botão abaixo.
                   </p>
                 </div>
 
                 <div className={styles.ctaButtons}>
-                  <button
-                    type="button"
+                  <a
                     className={styles.btnPrimaryWhatsapp}
-                    onClick={handleSendWhatsApp}
+                    href={buildWhatsAppUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <span>💬</span> Iniciar no WhatsApp
-                  </button>
+                    <span>💬</span> Abrir WhatsApp novamente
+                  </a>
 
-                  <button
-                    type="button"
-                    className={styles.btnSecondaryAction}
-                    onClick={handleSendWhatsApp}
-                  >
-                    Agendar conversa (30 min)
+                  <button type="button" className={styles.btnSecondaryAction} onClick={onClose}>
+                    Voltar ao site
                   </button>
                 </div>
               </div>
