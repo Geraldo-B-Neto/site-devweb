@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -13,8 +13,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <link rel="canonical" href="__SITE_URL__/" />
     <meta name="author" content="DevWeb" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#111318" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#050507" />
     <meta name="format-detection" content="telephone=no" />
 
     <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
@@ -47,11 +46,11 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Aplica o tema salvo antes da pintura (evita flash e mudança de layout) -->
+    <!-- Modo escuro por padrão; aplica o tema claro salvo antes da pintura (evita flash) -->
     <script>
       try {
-        if (localStorage.getItem('dw-theme') === 'dark') {
-          document.documentElement.setAttribute('data-theme', 'dark');
+        if (localStorage.getItem('dw-theme') === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
         }
       } catch (e) {}
     </script>

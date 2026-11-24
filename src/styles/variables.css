@@ -17,3 +17,15 @@
   --serif: 'Newsreader', Georgia, serif;
   --ease: cubic-bezier(0.625, 0.05, 0, 1);
 }
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #050507;
+  --ink: #f3f4f7;
+  --slate: #b7bdcc;
+  --mute: #8f96a8;
+  --line: #2a2e3a;
+  --surface: #171a22;
+  --cloud: #13151c;
+  --hdr: rgba(5, 5, 7, 0.88);
+}
