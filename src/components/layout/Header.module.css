@@ -35,6 +35,9 @@
 }
 
 .nav {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 2.8vw, 40px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -72,6 +75,8 @@
 
 .menu a {
   color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
   transition: color 0.2s;
 }
 
@@ -110,9 +115,25 @@
 }
 
 .ctaDesktop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
   height: 42px;
   padding: 0 20px;
-  font-size: 14.5px;
+  border-radius: 10px;
+  background: var(--grad);
+  color: #ffffff;
+  font: 600 14px var(--mono);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+}
+
+.ctaDesktop:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 8px 20px rgba(232, 40, 36, 0.3);
 }
 
 /* WhatsApp link in mobile drawer */
@@ -181,7 +202,7 @@
   border-bottom: 0;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .desktopNav {
     display: none;
   }

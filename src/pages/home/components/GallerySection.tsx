@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './GallerySection.module.css';
 
-import cromaticaDesktop from '../../../assets/images/cromatica-desktop.webp';
-import cromaticaMobile from '../../../assets/images/cromatica-mobile.webp';
-import cervoDesktop from '../../../assets/images/cervo-desktop.webp';
-import cervoMobile from '../../../assets/images/cervo-mobile.webp';
+import cromaticaDesktop from '../../../assets/images/site-cromatica-filmes-desktop.webp';
+import cromaticaMobile from '../../../assets/images/site-cromatica-filmes-mobile.webp';
+import cervoDesktop from '../../../assets/images/site-cervo-films-desktop.webp';
+import cervoMobile from '../../../assets/images/site-cervo-films-mobile.webp';
 
 interface GallerySectionProps {
   onOpenBriefing?: () => void;
@@ -373,10 +373,10 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenBriefing }
                       <span />
                       <em>cromaticafilmes.com.br</em>
                     </div>
-                    <img src={cromaticaDesktop} alt="Página inicial do site Cromática Filmes" />
+                    <img src={cromaticaDesktop} alt="Página inicial do site da Cromática Filmes, escola de música em Patrocínio-MG, criado pela DevWeb" width="1100" height="521" loading="lazy" decoding="async" />
                   </figure>
                   <div className={styles.mb}>
-                    <img src={cromaticaMobile} alt="Versão mobile do site Cromática Filmes" />
+                    <img src={cromaticaMobile} alt="Versão mobile do site da Cromática Filmes" width="520" height="952" loading="lazy" decoding="async" />
                   </div>
                   <div className={styles.bdg}>
                     <svg viewBox="0 0 140 140" aria-hidden="true">
@@ -485,10 +485,10 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenBriefing }
                       <span />
                       <em>cervofilms.com</em>
                     </div>
-                    <img src={cervoDesktop} alt="Página inicial do site Cervo Films" />
+                    <img src={cervoDesktop} alt="Página inicial do site da Cervo Films, agência audiovisual em Patrocínio-MG, criado pela DevWeb" width="1100" height="516" loading="lazy" decoding="async" />
                   </figure>
                   <div className={styles.mb}>
-                    <img src={cervoMobile} alt="Versão mobile do site Cervo Films" />
+                    <img src={cervoMobile} alt="Versão mobile do site da Cervo Films" width="520" height="949" loading="lazy" decoding="async" />
                   </div>
                   <div className={styles.bdg}>
                     <svg viewBox="0 0 140 140" aria-hidden="true">

@@ -30,17 +30,12 @@ export const ManifestoSection: React.FC = () => {
     }
 
     let ticking = false;
+    let rafId: number | null = null;
+    let played = false;
+    const mobileMq = window.matchMedia('(max-width: 768px)');
 
-    const upd = () => {
-      ticking = false;
-      const r = sec.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const L = vh * 0.35;
-      const tot = r.height - vh + L;
-      const pr = Math.min(1, Math.max(0, (L - r.top) / tot));
-      const q = Math.min(1, pr / 0.85);
-      const pos = q * (N + OV);
-
+    // Aplica o estado da animação: pos vai de 0 (oculto) a N + OV (tudo visível)
+    const paint = (pos: number) => {
       for (let i = 0; i < N; i++) {
         const c = chars[i];
         if (!c) continue;
@@ -48,6 +43,42 @@ export const ManifestoSection: React.FC = () => {
         c.style.transform = `translateY(${((1 - f) * 118).toFixed(1)}%)`;
         c.style.opacity = f.toFixed(2);
       }
+    };
+
+    // Mobile: ao entrar na seção, revela o texto inteiro automaticamente (mesma animação)
+    const play = () => {
+      played = true;
+      const DURATION = 1600;
+      const t0 = performance.now();
+      const step = (t: number) => {
+        const k = Math.min(1, (t - t0) / DURATION);
+        const eased = 1 - Math.pow(1 - k, 3);
+        paint(eased * (N + OV));
+        if (k < 1) rafId = requestAnimationFrame(step);
+      };
+      rafId = requestAnimationFrame(step);
+    };
+
+    const upd = () => {
+      ticking = false;
+      const r = sec.getBoundingClientRect();
+      const vh = window.innerHeight;
+
+      if (mobileMq.matches) {
+        if (played) return;
+        // Dispara assim que a seção entra na tela e o usuário rola um pouco
+        if (r.top < vh * 0.8 && r.bottom > 0) play();
+        else paint(0);
+        return;
+      }
+
+      // Desktop: revelação controlada pela rolagem
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      const L = vh * 0.35;
+      const tot = r.height - vh + L;
+      const pr = Math.min(1, Math.max(0, (L - r.top) / tot));
+      const q = Math.min(1, pr / 0.85);
+      paint(q * (N + OV));
     };
 
     const onScroll = () => {
@@ -64,6 +95,7 @@ export const ManifestoSection: React.FC = () => {
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
 

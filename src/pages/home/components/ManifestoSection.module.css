@@ -81,3 +81,15 @@
 .tsVis {
   display: inline;
 }
+/* Mobile: sem rolagem longa; o texto é revelado automaticamente ao entrar na seção */
+@media (max-width: 768px) {
+  .tsplit.on {
+    height: auto;
+    padding: 88px 0;
+  }
+
+  .tsplit.on .tsIn {
+    position: static;
+    height: auto;
+  }
+}

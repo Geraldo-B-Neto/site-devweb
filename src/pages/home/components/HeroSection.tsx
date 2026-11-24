@@ -40,9 +40,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBriefing }) => {
             className={`${styles.hdAbout}`}
             style={{ '--a': 0 } as React.CSSProperties}
           >
-            A DevWeb é uma agência de desenvolvimento web. Criamos landing pages e sites
-            institucionais sob medida, com código sólido e design pensado para transformar
-            visitantes em clientes.
+            A DevWeb é uma agência de criação de sites em Patrocínio-MG que atende todo o
+            Brasil. Criamos landing pages, sites institucionais e sistemas web sob medida, com
+            código sólido e design pensado para transformar visitantes em clientes.
           </p>
           <div
             className={`${styles.cta} ${styles.hi}`}
@@ -86,7 +86,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBriefing }) => {
               id="giant"
               style={{ '--a': 4 } as React.CSSProperties}
             >
-              DevWeb Resolv
+              <span className="sr-only">
+                DevWeb: criação de sites profissionais, landing pages e sistemas web.{' '}
+              </span>
+              <span aria-hidden="true">DevWeb Resolv</span>
             </h1>
           </div>
         </div>

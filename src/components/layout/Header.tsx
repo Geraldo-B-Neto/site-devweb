@@ -1,29 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Header.module.css';
-import logoImg from '../../assets/images/logo.png';
-import logoWhiteImg from '../../assets/images/logo-white.png';
+import logoImg from '../../assets/images/devweb-logo.webp';
+import logoWhiteImg from '../../assets/images/devweb-logo-white.webp';
 
 interface HeaderProps {
   onOpenBriefing?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({ onOpenBriefing }) => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Initialize theme from localStorage or document attribute
+  // Initialize theme from localStorage (default: dark)
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('dw-theme') as 'light' | 'dark' | null;
-      if (saved === 'dark') {
-        setTheme('dark');
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } else {
-        setTheme('light');
-        document.documentElement.setAttribute('data-theme', 'light');
-      }
+      // Modo escuro é o padrão; só usa o claro se o visitante escolheu antes
+      const saved = localStorage.getItem('dw-theme');
+      const initial = saved === 'light' ? 'light' : 'dark';
+      setTheme(initial);
+      document.documentElement.setAttribute('data-theme', initial);
     } catch {
-      // fallback
+      document.documentElement.setAttribute('data-theme', 'dark');
     }
   }, []);
 
@@ -92,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBriefing }) => {
       if (e.key === 'Escape') setIsMenuOpen(false);
     };
     const handleResize = () => {
-      if (window.innerWidth > 960) setIsMenuOpen(false);
+      if (window.innerWidth > 1100) setIsMenuOpen(false);
     };
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('resize', handleResize);
@@ -159,7 +156,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBriefing }) => {
           </button>
 
           <a
-            className={`btn btn-primary ${styles.ctaDesktop}`}
+            className={styles.ctaDesktop}
             href="#briefing"
             onClick={(e) => {
               if (onOpenBriefing) {
@@ -203,7 +200,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBriefing }) => {
           <li><a href="#duvidas" onClick={closeMenu}>Dúvidas</a></li>
           <li>
             <a
-              href="https://wa.me/5534998418664"
+              href="https://wa.me/5534997315975"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.whatsappLink}

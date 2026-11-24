@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styles from './BriefingSection.module.css';
 import { SimulatorPrefill } from './SimulatorSection';
 
-import cromaticaImg from '../../../assets/images/cromatica-desktop.webp';
-import cervoImg from '../../../assets/images/cervo-desktop.webp';
-import institucionalImg from '../../../assets/images/servico-institucional.webp';
+import cromaticaImg from '../../../assets/images/site-cromatica-filmes-desktop.webp';
+import cervoImg from '../../../assets/images/site-cervo-films-desktop.webp';
+import institucionalImg from '../../../assets/images/exemplo-site-institucional.webp';
 
 interface BriefingSectionProps {
   onClose: () => void;
@@ -291,7 +291,7 @@ export const BriefingSection: React.FC<BriefingSectionProps> = ({ onClose, prefi
       `*Recursos Desejados:* ${features.join(', ') || 'A definir'}`,
     ].join('\n');
 
-    const url = `https://wa.me/5534998418664?text=${encodeURIComponent(summary)}`;
+    const url = `https://wa.me/5534997315975?text=${encodeURIComponent(summary)}`;
     window.open(url, '_blank');
   };
 
@@ -701,7 +701,15 @@ export const BriefingSection: React.FC<BriefingSectionProps> = ({ onClose, prefi
                 {recommendedSites.map((site, idx) => (
                   <article key={idx} className={styles.siteCard}>
                     <div className={styles.siteImageWrap}>
-                      <img src={site.image} alt={site.name} className={styles.siteImage} />
+                      <img
+                        src={site.image}
+                        alt={`Exemplo de projeto: ${site.name}`}
+                        className={styles.siteImage}
+                        width="1100"
+                        height="516"
+                        loading="lazy"
+                        decoding="async"
+                      />
                       <span className={styles.siteBadge}>{site.badge}</span>
                     </div>
                     <div className={styles.siteBody}>

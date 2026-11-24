@@ -321,35 +321,29 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenBriefing
             <div className={styles.stack}>
               <div className={`${styles.st} ${activeIndex === 0 ? styles.on : ''}`}>
                 <h2>
-                  {activeIndex === 0 && (
-                    <>
-                      {renderSplitText('landing', 0)}
-                      <br />
-                      {renderSplitText('pages', 70)}
-                    </>
-                  )}
+                  <span key={`t0-${activeIndex === 0}`}>
+                    {renderSplitText('landing', 0)}
+                    <br />
+                    {renderSplitText('pages', 70)}
+                  </span>
                 </h2>
               </div>
               <div className={`${styles.st} ${activeIndex === 1 ? styles.on : ''}`}>
                 <h2 className={styles.longTitle}>
-                  {activeIndex === 1 && (
-                    <>
-                      {renderSplitText('sites', 0)}
-                      <br />
-                      {renderSplitText('institucionais', 70)}
-                    </>
-                  )}
+                  <span key={`t1-${activeIndex === 1}`}>
+                    {renderSplitText('sites', 0)}
+                    <br />
+                    {renderSplitText('institucionais', 70)}
+                  </span>
                 </h2>
               </div>
               <div className={`${styles.st} ${activeIndex === 2 ? styles.on : ''}`}>
                 <h2>
-                  {activeIndex === 2 && (
-                    <>
-                      {renderSplitText('sistemas', 0)}
-                      <br />
-                      {renderSplitText('web', 70)}
-                    </>
-                  )}
+                  <span key={`t2-${activeIndex === 2}`}>
+                    {renderSplitText('sistemas', 0)}
+                    <br />
+                    {renderSplitText('web', 70)}
+                  </span>
                 </h2>
               </div>
             </div>
@@ -375,11 +369,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenBriefing
             <div className={styles.stack}>
               <div className={`${styles.st} ${activeIndex === 0 ? styles.on : ''}`}>
                 <p className={styles.desc}>
-                  {activeIndex === 0 &&
-                    renderSplitText(
+                  <span key={`d0-${activeIndex === 0}`}>
+                    {renderSplitText(
                       'Uma página única, focada em uma oferta, feita para o visitante entrar em contato.',
                       80
                     )}
+                  </span>
                 </p>
                 <ul className={styles.advList}>
                   <li>Carregamento rápido</li>
@@ -390,11 +385,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenBriefing
 
               <div className={`${styles.st} ${activeIndex === 1 ? styles.on : ''}`}>
                 <p className={styles.desc}>
-                  {activeIndex === 1 &&
-                    renderSplitText(
+                  <span key={`d1-${activeIndex === 1}`}>
+                    {renderSplitText(
                       'Um site com várias páginas que apresenta a sua empresa, os seus serviços e a sua história.',
                       80
                     )}
+                  </span>
                 </p>
                 <ul className={styles.advList}>
                   <li>Mais credibilidade para a sua marca</li>
@@ -405,11 +401,12 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenBriefing
 
               <div className={`${styles.st} ${activeIndex === 2 ? styles.on : ''}`}>
                 <p className={styles.desc}>
-                  {activeIndex === 2 &&
-                    renderSplitText(
+                  <span key={`d2-${activeIndex === 2}`}>
+                    {renderSplitText(
                       'Um sistema que roda no navegador e organiza a rotina do seu negócio em um só lugar.',
                       80
                     )}
+                  </span>
                 </p>
                 <ul className={styles.advList}>
                   <li>Cadastros, agendamentos e relatórios centralizados</li>
