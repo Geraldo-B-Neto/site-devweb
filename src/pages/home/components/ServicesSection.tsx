@@ -376,6 +376,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenBriefing
                     )}
                   </span>
                 </p>
+                <p className={styles.price}>
+                  <b>R$ 790</b>
+                  <span>em até 2x no cartão</span>
+                </p>
                 <ul className={styles.advList}>
                   <li>Carregamento rápido</li>
                   <li>Leitura perfeita no celular</li>
@@ -392,6 +396,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenBriefing
                     )}
                   </span>
                 </p>
+                <p className={styles.price}>
+                  <b>R$ 990</b>
+                  <span>em até 2x no cartão</span>
+                </p>
                 <ul className={styles.advList}>
                   <li>Mais credibilidade para a sua marca</li>
                   <li>Estrutura pensada para aparecer nas buscas</li>
@@ -407,6 +415,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenBriefing
                       80
                     )}
                   </span>
+                </p>
+                <p className={styles.price}>
+                  <b>Sob consulta</b>
                 </p>
                 <ul className={styles.advList}>
                   <li>Cadastros, agendamentos e relatórios centralizados</li>
