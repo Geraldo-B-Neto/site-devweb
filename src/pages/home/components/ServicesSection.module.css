@@ -214,6 +214,34 @@
   color: #F6F1F4;
 }
 
+.price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 0 0 24px 0;
+}
+
+.price b {
+  font: 500 clamp(26px, 2.2vw, 34px)/1 var(--head);
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+
+:root[data-theme="dark"] .price b {
+  color: #FFC4DD;
+}
+
+.price span {
+  font: 400 clamp(12.5px, 0.9vw, 13.5px)/1.35 var(--mono);
+  letter-spacing: .03em;
+  color: var(--slate);
+}
+
+:root[data-theme="dark"] .price span {
+  color: #a6a0ae;
+}
+
 .advList {
   display: flex;
   flex-direction: column;
@@ -791,6 +819,18 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  .price {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: clamp(6px, 1.4svh, 14px);
+  }
+
+  .price b {
+    font-size: clamp(22px, min(5.6vw, 3.4svh), 30px);
   }
 
   .advList {

@@ -73,7 +73,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBriefing }) => {
           >
             <span>Sua presença digital resolvida.</span>
             <span className={styles.offer2}>
-              <b>Projetos a partir de R$ 690</b>
+              <b>Projetos a partir de R$ 790</b>
               <i></i>
               Seu site no ar em até 7 dias
             </span>
