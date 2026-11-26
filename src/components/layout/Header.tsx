@@ -89,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBriefing }) => {
       if (e.key === 'Escape') setIsMenuOpen(false);
     };
     const handleResize = () => {
-      if (window.innerWidth > 1100) setIsMenuOpen(false);
+      if (window.innerWidth > 1240) setIsMenuOpen(false);
     };
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('resize', handleResize);
@@ -127,6 +127,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBriefing }) => {
         <nav aria-label="Principal" className={styles.desktopNav}>
           <ul className={styles.menu}>
             <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#conecta">Conecta</a></li>
             <li><a href="#projetos">Projetos</a></li>
             <li><a href="#processo">Como trabalhamos</a></li>
             <li><a href="#equipe">Equipe</a></li>
@@ -193,6 +194,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenBriefing }) => {
       <div className={styles.mobilePanel} id="mp">
         <ul>
           <li><a href="#servicos" onClick={closeMenu}>Serviços</a></li>
+          <li><a href="#conecta" onClick={closeMenu}>Conecta</a></li>
           <li><a href="#projetos" onClick={closeMenu}>Projetos</a></li>
           <li><a href="#processo" onClick={closeMenu}>Como trabalhamos</a></li>
           <li><a href="#equipe" onClick={closeMenu}>Equipe</a></li>

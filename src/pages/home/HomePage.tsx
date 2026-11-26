@@ -3,6 +3,7 @@ import HeroSection from './components/HeroSection';
 import ManifestoSection from './components/ManifestoSection';
 import PresenceSection from './components/PresenceSection';
 import ServicesSection from './components/ServicesSection';
+import ConectaSection from './components/ConectaSection';
 import GallerySection from './components/GallerySection';
 import ProcessSection from './components/ProcessSection';
 import BioSection from './components/BioSection';
@@ -70,6 +71,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       <ManifestoSection />
       <PresenceSection />
       <ServicesSection onOpenBriefing={openBriefing} />
+      <ConectaSection />
       <GallerySection onOpenBriefing={openBriefing} />
       <ProcessSection onOpenBriefing={openBriefing} />
       <BioSection />

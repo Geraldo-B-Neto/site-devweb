@@ -39,6 +39,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBriefing }) => {
           </a>
 
           <div className={styles.linksGroup}>
+            <a href="#conecta" className={styles.linkItem}>
+              Conecta
+            </a>
             <a href="mailto:devwebofc@gmail.com" className={styles.linkItem}>
               devwebofc@gmail.com
             </a>
