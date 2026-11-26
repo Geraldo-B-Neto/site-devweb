@@ -8,6 +8,20 @@ interface ServicesSectionProps {
 export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenBriefing }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const mocksRef = useRef<HTMLDivElement>(null);
+
+  // No celular os mockups são desenhados em 300px de largura e reduzidos por inteiro,
+  // mantendo as proporções (o texto encolhe junto, sem se sobrepor)
+  useEffect(() => {
+    const el = mocksRef.current;
+    if (!el) return;
+    const update = () => el.style.setProperty('--k', String(el.clientWidth / 300));
+    update();
+    if (!('ResizeObserver' in window)) return;
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   // Interactive mock states
   const [instTab, setInstTab] = useState<'inicio' | 'sobre' | 'servicos' | 'contato'>('inicio');
@@ -321,35 +335,29 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenBriefing
             <div className={styles.stack}>
               <div className={`${styles.st} ${activeIndex === 0 ? styles.on : ''}`}>
                 <h2>
-                  {activeIndex === 0 && (
-                    <>
-                      {renderSplitText('landing', 0)}
-                      <br />
-                      {renderSplitText('pages', 70)}
-                    </>
-                  )}
+                  <span key={`t0-${activeIndex === 0}`}>
+                    {renderSplitText('landing', 0)}
+                    <br />
+                    {renderSplitText('pages', 70)}
+                  </span>
                 </h2>
               </div>
               <div className={`${styles.st} ${activeIndex === 1 ? styles.on : ''}`}>
                 <h2 className={styles.longTitle}>
-                  {activeIndex === 1 && (
-                    <>
-                      {renderSplitText('sites', 0)}
-                      <br />
-                      {renderSplitText('institucionais', 70)}
-                    </>
-                  )}
+                  <span key={`t1-${activeIndex === 1}`}>
+                    {renderSplitText('sites', 0)}
+                    <br />
+                    {renderSplitText('institucionais', 70)}
+                  </span>
                 </h2>
               </div>
               <div className={`${styles.st} ${activeIndex === 2 ? styles.on : ''}`}>
                 <h2>
-                  {activeIndex === 2 && (
-                    <>
-                      {renderSplitText('sistemas', 0)}
-                      <br />
-                      {renderSplitText('web', 70)}
-                    </>
-                  )}
+                  <span key={`t2-${activeIndex === 2}`}>
+                    {renderSplitText('sistemas', 0)}
+                    <br />
+                    {renderSplitText('web', 70)}
+                  </span>
                 </h2>
               </div>
             </div>
@@ -357,7 +365,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenBriefing
 
           {/* Center Column: Tall Rounded Interactive Card */}
           <div className={styles.colCenter}>
-            <div className={styles.cds}>
+            <div className={styles.cds} ref={mocksRef}>
               <div className={`${styles.cd} ${activeIndex === 0 ? styles.on : ''}`}>
                 {renderLandingMock()}
               </div>
@@ -375,11 +383,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenBriefing
             <div className={styles.stack}>
               <div className={`${styles.st} ${activeIndex === 0 ? styles.on : ''}`}>
                 <p className={styles.desc}>
-                  {activeIndex === 0 &&
-                    renderSplitText(
+                  <span key={`d0-${activeIndex === 0}`}>
+                    {renderSplitText(
                       'Uma página única, focada em uma oferta, feita para o visitante entrar em contato.',
                       80
                     )}
+                  </span>
+                </p>
+                <p className={styles.price}>
+                  <b>R$ 790</b>
+                  <span>em até 2x no cartão</span>
                 </p>
                 <ul className={styles.advList}>
                   <li>Carregamento rápido</li>
@@ -390,11 +403,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenBriefing
 
               <div className={`${styles.st} ${activeIndex === 1 ? styles.on : ''}`}>
                 <p className={styles.desc}>
-                  {activeIndex === 1 &&
-                    renderSplitText(
+                  <span key={`d1-${activeIndex === 1}`}>
+                    {renderSplitText(
                       'Um site com várias páginas que apresenta a sua empresa, os seus serviços e a sua história.',
                       80
                     )}
+                  </span>
+                </p>
+                <p className={styles.price}>
+                  <b>R$ 990</b>
+                  <span>em até 2x no cartão</span>
                 </p>
                 <ul className={styles.advList}>
                   <li>Mais credibilidade para a sua marca</li>
@@ -405,11 +423,15 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenBriefing
 
               <div className={`${styles.st} ${activeIndex === 2 ? styles.on : ''}`}>
                 <p className={styles.desc}>
-                  {activeIndex === 2 &&
-                    renderSplitText(
+                  <span key={`d2-${activeIndex === 2}`}>
+                    {renderSplitText(
                       'Um sistema que roda no navegador e organiza a rotina do seu negócio em um só lugar.',
                       80
                     )}
+                  </span>
+                </p>
+                <p className={styles.price}>
+                  <b>Sob consulta</b>
                 </p>
                 <ul className={styles.advList}>
                   <li>Cadastros, agendamentos e relatórios centralizados</li>

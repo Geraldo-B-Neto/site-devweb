@@ -8,27 +8,51 @@ interface HeroSectionProps {
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBriefing }) => {
   const giantRef = useRef<HTMLHeadingElement>(null);
 
+  // Ajusta o "DevWeb Resolv" para o desenho das letras encostar nas duas bordas da tela
   useEffect(() => {
     const g = giantRef.current;
-    if (!g) return;
-    const w = g.parentElement;
-    if (!w) return;
+    const w = g?.parentElement;
+    if (!g || !w) return;
+    const visual = g.querySelector<HTMLElement>('[aria-hidden="true"]');
+    const text = visual?.textContent || 'DevWeb Resolv';
+    const ctx = document.createElement('canvas').getContext('2d');
 
     const fit = () => {
+      // Bloco de borda a borda da janela, ignorando a margem lateral do topo
+      const vw = document.documentElement.clientWidth;
+      w.style.marginLeft = '0px';
+      w.style.width = '';
+      w.style.marginLeft = `${-w.getBoundingClientRect().left}px`;
+      w.style.width = `${vw}px`;
+
       g.style.fontSize = '100px';
-      const k = g.offsetWidth;
-      if (k > 0) {
-        g.style.fontSize = `${(100 * w.clientWidth) / k}px`;
+      g.style.marginLeft = '0px';
+      const cs = getComputedStyle(g);
+      const pad = parseFloat(cs.paddingLeft) || 0;
+
+      // Mede a tinta real das letras (sem as sobras laterais da fonte)
+      let inkStart = 0;
+      let inkWidth = 0;
+      if (ctx && 'letterSpacing' in ctx) {
+        ctx.font = `${cs.fontWeight} 100px ${cs.fontFamily}`;
+        (ctx as CanvasRenderingContext2D & { letterSpacing: string }).letterSpacing = cs.letterSpacing;
+        const m = ctx.measureText(text);
+        inkStart = -m.actualBoundingBoxLeft;
+        inkWidth = m.actualBoundingBoxLeft + m.actualBoundingBoxRight;
       }
+      if (!(inkWidth > 0)) {
+        inkWidth = g.offsetWidth - pad * 2; // navegadores sem medição de tinta
+      }
+
+      const size = (100 * vw) / inkWidth;
+      const k = size / 100;
+      g.style.fontSize = `${size}px`;
+      g.style.marginLeft = `${-(pad * k + inkStart * k)}px`;
     };
 
     fit();
     window.addEventListener('resize', fit);
-
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(fit);
-    }
-
+    if (document.fonts?.ready) document.fonts.ready.then(fit);
     return () => window.removeEventListener('resize', fit);
   }, []);
 
@@ -40,9 +64,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBriefing }) => {
             className={`${styles.hdAbout}`}
             style={{ '--a': 0 } as React.CSSProperties}
           >
-            A DevWeb é uma agência de desenvolvimento web. Criamos landing pages e sites
-            institucionais sob medida, com código sólido e design pensado para transformar
-            visitantes em clientes.
+            A DevWeb é uma agência de criação de sites em Patrocínio-MG que atende todo o
+            Brasil. Criamos landing pages, sites institucionais e sistemas web sob medida, com
+            código sólido e design pensado para transformar visitantes em clientes.
           </p>
           <div
             className={`${styles.cta} ${styles.hi}`}
@@ -73,7 +97,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBriefing }) => {
           >
             <span>Sua presença digital resolvida.</span>
             <span className={styles.offer2}>
-              <b>Projetos a partir de R$ 690</b>
+              <b>Projetos a partir de R$ 790</b>
               <i></i>
               Seu site no ar em até 7 dias
             </span>
@@ -86,7 +110,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBriefing }) => {
               id="giant"
               style={{ '--a': 4 } as React.CSSProperties}
             >
-              DevWeb Resolv
+              <span className="sr-only">
+                DevWeb: criação de sites profissionais, landing pages e sistemas web.{' '}
+              </span>
+              <span aria-hidden="true">DevWeb Resolv</span>
             </h1>
           </div>
         </div>
