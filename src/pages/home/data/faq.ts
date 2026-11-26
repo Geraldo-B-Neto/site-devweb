@@ -23,6 +23,6 @@ export const QA: QAItem[] = [
   },
   {
     q: 'Quanto custa?',
-    a: 'Os projetos começam <b>a partir de R$ 690</b>. O orçamento final é combinado na conversa, antes de começar, sem surpresa depois.',
+    a: 'Os projetos começam <b>a partir de R$ 790</b>. O orçamento final é combinado na conversa, antes de começar, sem surpresa depois.',
   },
 ];

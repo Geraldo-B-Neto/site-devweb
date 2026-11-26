@@ -299,8 +299,8 @@ export const ResultsSection: React.FC = () => {
             <div className={styles.bd}>
               <div className={styles.num}>
                 <small>R$</small>
-                <span className="cu" data-n="690">
-                  690
+                <span className="cu" data-n="790">
+                  790
                 </span>
               </div>
               <div>
