@@ -171,25 +171,26 @@
 .giant {
   display: inline-block;
   margin: 0;
+  /* folga para o degradê cobrir as letras inteiras; compensada no ajuste via JS */
+  padding: 0 0.1em;
   white-space: nowrap;
   font: 600 12vw / 0.86 var(--head);
   letter-spacing: -0.05em;
-  background: linear-gradient(110deg, #F14895, #E82824);
-  background-size: 200% 100%;
+  /* degradê liso da marca, mais largo que o texto para poder deslizar */
+  background: linear-gradient(90deg, #F14895 0%, #E82824 100%);
+  background-size: 250% 100%;
+  background-position: 0% 50%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
 }
 
-.hi {
-  animation: up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  animation-delay: calc(var(--a, 0) * 0.09s);
-}
-
 .giant.hi {
-  animation: up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both, shim 24s ease-in-out 0.8s infinite alternate;
-  animation-delay: calc(var(--a, 0) * 0.09s), 0s;
+  animation:
+    up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both,
+    shim 12s ease-in-out 0.8s infinite alternate;
+  animation-delay: calc(var(--a, 0) * 0.09s), calc(var(--a, 0) * 0.09s + 0.8s);
 }
 
 @keyframes up {
@@ -200,16 +201,21 @@
 }
 
 @keyframes shim {
-  0% {
+  from {
     background-position: 0% 50%;
   }
-  50% {
+  to {
     background-position: 100% 50%;
   }
-  100% {
-    background-position: 0% 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .giant.hi {
+    animation: up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(var(--a, 0) * 0.09s);
   }
 }
+
 
 @media (max-width: 900px) {
   .hd {
